@@ -9,9 +9,7 @@ use Illuminate\View\View;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request): View
     {
         return view('tasks.index', [
@@ -19,38 +17,21 @@ class TaskController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    {}
+   
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:70',
-        ]);
-        
+        $validated = $this->titleValidation($request);
         $request->user()->task()->create($validated);
         return redirect(route('tasks.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(Task $task)
-    {
-        //
-    }
+    {}
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Task $task): View
     {
         $this->authorize('update', $task);
@@ -60,30 +41,28 @@ class TaskController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Task $task)
     {
         $this->authorize('update', $task);
 
-        $validated = $request->validate([
-            'title' => 'required|string|max:70',
-        ]);
-        
+        $validated = $this->titleValidation($request);
         $task->update($validated);
         return redirect(route('tasks.index'));
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Task $task): RedirectResponse
     {
         $this->authorize('delete', $task);
         $task->delete();
 
         return redirect(route('tasks.index'));
+    }
+
+    private function titleValidation(Request $request)
+    {
+        return $request->validate([
+            'title' => 'required|string|max:70',
+        ]);
     }
 }

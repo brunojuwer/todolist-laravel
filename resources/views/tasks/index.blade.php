@@ -42,9 +42,9 @@
                             </p>
                                 <x-dropdown-link 
                                     :href="route('tasks.edit', $task)" 
-                                    class="w-[4rem] h-8 py-4 inline-flex text-center items-center bg-gray-600 border 
-                                        border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest
-                                      dark:hover:bg-blue-500 focus:outline-none focus:ring-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
+                                    class="w-[63px] h-8 py-4 inline-flex text-center items-center bg-gray-600 border 
+                                        border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest 
+                                      dark:hover:bg-blue-600 focus:outline-none focus:ring-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
                                 > 
                                     {{ __('Edit') }}    
                                 </x-dropdown-link>
