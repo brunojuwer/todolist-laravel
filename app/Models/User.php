@@ -14,7 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function tasks(): HasMany
+    public function task(): HasMany
     {
         return $this->hasMany(Task::class);
     }
